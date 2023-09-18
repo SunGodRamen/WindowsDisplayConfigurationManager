@@ -19,10 +19,10 @@ namespace DisplayConfigurationManager
         [Option('d', "device", Required = false, HelpText = "Name of the device to adjust.")]
         public string? DeviceName { get; set; }
 
-        [Option("x", Required = false, HelpText = "Set X position of the display.")]
+        [Option('x', "set-x", Required = false, HelpText = "Set X position of the display.")]
         public int? SetX { get; set; }
 
-        [Option("y", Required = false, HelpText = "Set Y position of the display.")]
+        [Option('y', "set-y", Required = false, HelpText = "Set Y position of the display.")]
         public int? SetY { get; set; }
 
         [Option('w', "width", Required = false, HelpText = "Width of the resolution.")]

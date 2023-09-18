@@ -174,13 +174,12 @@ namespace DisplayConfigurationManager
                       if (o.Verbose)
                       {
                           Console.WriteLine("Verbose mode activated. Showing detailed output...");
-                          // Other verbose output goes here
                       }
 
                       if (o.ListDevices)
                       {
                           EnumerateDevices(o.Verbose);
-                          return;  // Exit after listing devices
+                          return;
                       }
 
                       if (o.Query != null)
@@ -211,7 +210,20 @@ namespace DisplayConfigurationManager
                           }
                       }
 
-                      // Handle other options...
+                      // If x, y, and device name are provided, change the display position
+                      if (o.DeviceName != null && o.Width.HasValue && o.Height.HasValue)
+                      {
+                          if (IsValidLocation(o.DeviceName, o.SetX.Value, o.SetX.Value))
+                          {
+                              int result = ChangeDisplayPosition(o.DeviceName.Value, o.SetX.Value, o.SetY.Value);
+                              if (result != 0)
+                              {
+                                  Console.WriteLine($"Display " . );
+                              }
+
+                          }
+                      }
+
                   })
                   .WithNotParsed(errors =>
                   {
@@ -302,6 +314,8 @@ namespace DisplayConfigurationManager
                 }
             }
         }
+
+
         private static void ChangeDisplayPosition(string deviceName, int x, int y)
         {
             DEVMODE currentSettings = new DEVMODE();
@@ -319,6 +333,12 @@ namespace DisplayConfigurationManager
             {
                 Console.WriteLine($"Failed to get current settings for device {deviceName}.");
             }
+        }
+
+        private static void %IsValidLocation%(string deviceName, int x, int y)
+        {
+            
+            
         }
 
         public static DISP_CHANGE ChangeResolution(string deviceName, int width, int height)
